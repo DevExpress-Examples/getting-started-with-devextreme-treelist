@@ -71,7 +71,9 @@
     <dxo-paging [enabled]="true" [pageSize]="10"> </dxo-paging>
   </dx-tree-list>
 
-  <p id="selected-employee" *ngIf="selectedEmployee">
+  @if (selectedEmployee) {
+  <p id="selected-employee">
     Selected employee: {{ selectedEmployee.FullName }}
   </p>
+  }
 </div>
