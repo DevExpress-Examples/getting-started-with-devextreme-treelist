@@ -7,11 +7,13 @@ import {
 } from './app.types';
 import { EmployeesService } from './employees.service';
 
+import { DxTreeListModule } from 'devextreme-angular/ui/tree-list';
+
 @Component({
     selector: 'app-root',
+    imports: [DxTreeListModule],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    standalone: false
 })
 export class AppComponent {
   employees: Employee[] = [];
