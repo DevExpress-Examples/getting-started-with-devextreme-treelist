@@ -8,10 +8,11 @@ import {
 import { EmployeesService } from './employees.service';
 
 import { DxTreeListModule } from 'devextreme-angular/ui/tree-list';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
 
 @Component({
     selector: 'app-root',
-    imports: [DxTreeListModule],
+    imports: [DxTreeListModule, DxButtonModule],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
