@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   Employee,
   DragChangeEvent,
@@ -14,6 +14,7 @@ import { DxButtonModule } from 'devextreme-angular/ui/button';
     selector: 'app-root',
     imports: [DxTreeListModule, DxButtonModule],
     templateUrl: './app.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
