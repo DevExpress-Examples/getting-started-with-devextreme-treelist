@@ -1,13 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import {
-  Employee,
-  DragChangeEvent,
-  ReorderEvent,
-  SelectionChangedEvent,
-} from './app.types';
-import { EmployeesService } from './employees.service';
-
-import { DxTreeListModule } from 'devextreme-angular/ui/tree-list';
+import { EmployeesService, type Employee } from './employees.service';
+import { DxTreeListModule, type DxTreeListTypes } from 'devextreme-angular/ui/tree-list';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
 
 @Component({
@@ -33,7 +26,7 @@ export class AppComponent {
     this.onDragChange = this.onDragChange.bind(this);
   }
 
-  selectEmployee(e: SelectionChangedEvent): void {
+  selectEmployee(e: DxTreeListTypes.SelectionChangedEvent): void {
     e.component.byKey(e.currentSelectedRowKeys[0]).then((employee: Employee) => {
       if (employee) {
         this.selectedEmployee = employee;
@@ -43,7 +36,7 @@ export class AppComponent {
     });
   }
 
-  onDragChange(e: DragChangeEvent): void {
+  onDragChange(e: any): void {
     const visibleRows = e.component.getVisibleRows();
     const sourceNode = e.component.getNodeByKey(e.itemData.ID);
     let targetNode = visibleRows[e.toIndex].node;
@@ -61,7 +54,7 @@ export class AppComponent {
     }
   }
 
-  onReorder(e: ReorderEvent): void {
+  onReorder(e: any): void {
     const visibleRows = e.component.getVisibleRows();
     const sourceData = e.itemData;
     const targetData = visibleRows[e.toIndex].data;

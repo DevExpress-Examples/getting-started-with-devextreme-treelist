@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { Employee, DragChangeEvent, ReorderEvent, SelectionChangedEvent } from '../types';
-import { employeesService } from '../employeesService';
+import { employeesService, type Employee } from '../employeesService';
 
-import 'devextreme/dist/css/dx.material.blue.light.compact.css';
+import 'devextreme/dist/css/dx.fluent.blue.light.css';
 import DxTreeList, {
   DxColumn,
   DxRequiredRule,
@@ -17,6 +16,8 @@ import DxTreeList, {
   DxItem,
   DxRowDragging,
   DxPaging,
+  DxScrolling,
+  type DxTreeListTypes,
 } from 'devextreme-vue/tree-list';
 import DxButton from 'devextreme-vue/button';
 
@@ -25,7 +26,7 @@ const selectedEmployee = ref<Employee | null>(null);
 const expanded = ref<boolean>(true);
 const expandedRowKeys = ref<number[]>([]);
 
-const selectEmployee = (e: SelectionChangedEvent): void => {
+const selectEmployee = (e: DxTreeListTypes.SelectionChangedEvent): void => {
   e.component.byKey(e.currentSelectedRowKeys[0]).then((employee: Employee) => {
     if (employee) {
       selectedEmployee.value = employee;
@@ -35,7 +36,7 @@ const selectEmployee = (e: SelectionChangedEvent): void => {
   });
 };
 
-const onDragChange = (e: DragChangeEvent): void => {
+const onDragChange = (e: any): void => {
   const visibleRows = e.component.getVisibleRows();
   const sourceNode = e.component.getNodeByKey(e.itemData.ID);
   let targetNode = visibleRows[e.toIndex].node;
@@ -53,7 +54,7 @@ const onDragChange = (e: DragChangeEvent): void => {
   }
 };
 
-const onReorder = (e: ReorderEvent): void => {
+const onReorder = (e: any): void => {
   const visibleRows = e.component.getVisibleRows();
   const sourceData = e.itemData;
   const targetData = visibleRows[e.toIndex].data;
@@ -77,6 +78,8 @@ const onReorder = (e: ReorderEvent): void => {
     employeesService.reorderEmployees(sourceData, targetIndex);
     employees.value = employeesService.getEmployees();
   }
+
+  e.component.refresh();
 };
 
 const toggleExpansion = (): void => {
@@ -99,6 +102,7 @@ const toggleExpansion = (): void => {
       :allow-column-resizing="true"
       :column-auto-width="true"
       @selection-changed="selectEmployee"
+      :height="800"
     >
       <DxColumn
         data-field="FullName"
@@ -177,8 +181,9 @@ const toggleExpansion = (): void => {
 
       <DxPaging
         :enabled="true"
-        :page-size="10"
+        :page-size="12"
       />
+      <DxScrolling mode="standard"/>
     </DxTreeList>
     <p
       id="selected-employee"
@@ -191,20 +196,13 @@ const toggleExpansion = (): void => {
 
 <style scoped>
 #app-container {
-  width: 900px;
-  position: relative;
   margin: 50px auto;
   padding: 20px;
-  border: 1px solid #ddd;
-}
-
-#tree-list {
-  margin-bottom: 20px;
 }
 
 #selected-employee {
-  margin-top: 20px;
-  font-weight: bold;
-  color: #337ab7;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 </style>

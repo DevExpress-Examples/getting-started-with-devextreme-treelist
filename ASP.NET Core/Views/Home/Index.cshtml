@@ -1,0 +1,134 @@
+@using ASP_NET_Core.Models
+
+<div id="app-container">
+    @(Html.DevExtreme().TreeList<Employee>()
+        .ID("tree-list")
+        .DataSource(d => d
+            .Mvc().Controller("EmployeeData")
+            .LoadAction("Get")
+            .InsertAction("Insert")
+            .UpdateAction("Update")
+            .DeleteAction("Delete")
+            .Key("ID")
+        )
+        .RootValue(-1)
+        .ParentIdExpr("HeadID")
+        .AutoExpandAll(true)
+        .AllowColumnReordering(true)
+        .AllowColumnResizing(true)
+        .ColumnAutoWidth(true)
+        .ColumnFixing(f => f.Enabled(true))
+        .ColumnChooser(c => c.Enabled(true))
+        .Columns(columns => {
+            columns.AddFor(m => m.FullName)
+                .Fixed(true)
+                .ValidationRules(v => v.AddRequired());
+            columns.AddFor(m => m.Position)
+                .ValidationRules(v => v.AddRequired());
+            columns.AddFor(m => m.BirthDate)
+                .DataType(GridColumnDataType.Date)
+                .Width(100)
+                .ValidationRules(v => v.AddRequired());
+            columns.AddFor(m => m.HireDate)
+                .DataType(GridColumnDataType.Date)
+                .Width(100)
+                .ValidationRules(v => v.AddRequired());
+            columns.AddFor(m => m.City);
+            columns.AddFor(m => m.State)
+                .ValidationRules(v => v.AddRequired());
+            columns.AddFor(m => m.Email)
+                .Visible(false);
+            columns.AddFor(m => m.MobilePhone);
+            columns.AddFor(m => m.Skype);
+        })
+        .FilterRow(f => f.Visible(true))
+        .SearchPanel(s => s.Visible(true))
+        .Selection(s => s.Mode(SelectionMode.Single))
+        .Editing(e => e
+            .Mode(GridEditMode.Popup)
+            .AllowAdding(true)
+            .AllowDeleting(true)
+            .AllowUpdating(true)
+        )
+        .OnSelectionChanged("handleSelectionChanged")
+        .Toolbar(t => t.Items(items => {
+            items.Add()
+                .Location(ToolbarItemLocation.After)
+                .Widget(w => w.Button()
+                    .Text("Collapse All")
+                    .Width(136)
+                    .OnClick("handleCollapseAllButtonClick")
+            );
+            items.Add().Name(TreeListToolbarItem.AddRowButton).ShowText(ToolbarItemShowTextMode.Always);
+            items.Add().Name(TreeListToolbarItem.ColumnChooserButton);
+            items.Add().Name(TreeListToolbarItem.SearchPanel);
+        }))
+        .RowDragging(r => r
+            .AllowDropInsideItem(true)
+            .AllowReordering(true)
+            .OnDragChange("handleDragChange")
+            .OnReorder("handleReorder")
+        )
+        .Paging(p => p
+            .Enabled(true)
+            .PageSize(12)
+        )
+        .Height(800)
+        .Scrolling(s => s.Mode(TreeListScrollingMode.Standard))
+    )
+    <p id="selected-employee"></p>
+</div>
+
+<script>
+    function handleSelectionChanged(e) {
+        e.component.byKey(e.currentSelectedRowKeys[0]).done((employee) => {
+            if (employee) {
+                $('#selected-employee').text(`Selected employee: ${employee.FullName}`);
+            }
+        });
+    }
+
+    function handleCollapseAllButtonClick(e) {
+        const expanding = e.component.option('text') === 'Expand All';
+        $('#tree-list').dxTreeList('instance').option({
+            autoExpandAll: expanding,
+            expandedRowKeys: [],
+        });
+        e.component.option('text', expanding ? 'Collapse All' : 'Expand All');
+    }
+
+    function handleDragChange(e) {
+        const targetRow = e.component.getVisibleRows()[e.toIndex];
+        if (!targetRow) {
+            return;
+        }
+
+        const sourceNode = e.component.getNodeByKey(e.itemData.ID);
+        let targetNode = targetRow.node;
+
+        while (targetNode && targetNode.data) {
+            if (targetNode.data.ID === sourceNode.data.ID) {
+                e.cancel = true;
+                break;
+            }
+            targetNode = targetNode.parent;
+        }
+    }
+
+    function handleReorder(e) {
+        const targetRow = e.component.getVisibleRows()[e.toIndex];
+        if (!targetRow) {
+            return;
+        }
+
+        e.promise = $.ajax({
+            url: '@Url.Action("Reorder", "EmployeeData")',
+            method: 'PUT',
+            data: {
+                sourceId: e.itemData.ID,
+                targetId: targetRow.data.ID,
+                dropInside: !!e.dropInsideItem,
+            },
+        }).then(() => e.component.refresh());
+    }
+</script>

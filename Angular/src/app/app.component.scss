@@ -1,17 +1,10 @@
 #app-container {
-  width: 900px;
-  position: relative;
   margin: 50px auto;
   padding: 20px;
-  border: 1px solid #ddd;
-}
-
-#tree-list {
-  margin-bottom: 20px;
 }
 
 #selected-employee {
-  margin-top: 20px;
-  font-weight: bold;
-  color: #337ab7;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
 }

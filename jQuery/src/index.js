@@ -132,5 +132,9 @@ $(() => {
       enabled: true,
       pageSize: 10,
     },
+    height: 800,
+    scrolling: {
+      mode: 'standard'
+    }
   }).dxTreeList('instance');
 });
