@@ -171,7 +171,7 @@ function App(): JSX.Element {
         />
 
         <Paging enabled={true} defaultPageSize={12} />
-        <Scrolling mode="standard"/>
+        <Scrolling mode="standard" />
       </TreeList>
       <SelectedEmployee employee={selectedEmployee} />
     </div>

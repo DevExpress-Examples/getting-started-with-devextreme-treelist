@@ -14,27 +14,42 @@
     height="800"
   >
     <dxi-tree-list-column dataField="FullName" [fixed]="true">
-      <dxi-tree-list-validation-rule type="required"></dxi-tree-list-validation-rule>
+      <dxi-tree-list-validation-rule
+        type="required"
+      ></dxi-tree-list-validation-rule>
     </dxi-tree-list-column>
     <dxi-tree-list-column dataField="Position">
-      <dxi-tree-list-validation-rule type="required"></dxi-tree-list-validation-rule>
+      <dxi-tree-list-validation-rule
+        type="required"
+      ></dxi-tree-list-validation-rule>
     </dxi-tree-list-column>
     <dxi-tree-list-column dataField="BirthDate" dataType="date" [width]="100">
-      <dxi-tree-list-validation-rule type="required"></dxi-tree-list-validation-rule>
+      <dxi-tree-list-validation-rule
+        type="required"
+      ></dxi-tree-list-validation-rule>
     </dxi-tree-list-column>
     <dxi-tree-list-column dataField="HireDate" dataType="date" [width]="100">
-      <dxi-tree-list-validation-rule type="required"></dxi-tree-list-validation-rule>
+      <dxi-tree-list-validation-rule
+        type="required"
+      ></dxi-tree-list-validation-rule>
     </dxi-tree-list-column>
     <dxi-tree-list-column dataField="City"></dxi-tree-list-column>
     <dxi-tree-list-column dataField="State">
-      <dxi-tree-list-validation-rule type="required"></dxi-tree-list-validation-rule>
+      <dxi-tree-list-validation-rule
+        type="required"
+      ></dxi-tree-list-validation-rule>
     </dxi-tree-list-column>
-    <dxi-tree-list-column dataField="Email" [visible]="false"></dxi-tree-list-column>
+    <dxi-tree-list-column
+      dataField="Email"
+      [visible]="false"
+    ></dxi-tree-list-column>
     <dxi-tree-list-column dataField="MobilePhone"></dxi-tree-list-column>
     <dxi-tree-list-column dataField="Skype"></dxi-tree-list-column>
 
     <dxo-tree-list-column-fixing [enabled]="true"></dxo-tree-list-column-fixing>
-    <dxo-tree-list-column-chooser [enabled]="true"></dxo-tree-list-column-chooser>
+    <dxo-tree-list-column-chooser
+      [enabled]="true"
+    ></dxo-tree-list-column-chooser>
     <dxo-tree-list-filter-row [visible]="true"></dxo-tree-list-filter-row>
     <dxo-tree-list-search-panel [visible]="true"></dxo-tree-list-search-panel>
     <dxo-tree-list-selection mode="single"></dxo-tree-list-selection>
@@ -55,7 +70,10 @@
         >
         </dx-button>
       </dxi-tree-list-item>
-      <dxi-tree-list-item name="addRowButton" showText="always"></dxi-tree-list-item>
+      <dxi-tree-list-item
+        name="addRowButton"
+        showText="always"
+      ></dxi-tree-list-item>
       <dxi-tree-list-item name="exportButton"></dxi-tree-list-item>
       <dxi-tree-list-item name="columnChooserButton"></dxi-tree-list-item>
       <dxi-tree-list-item name="searchPanel"></dxi-tree-list-item>
@@ -69,7 +87,10 @@
     >
     </dxo-tree-list-row-dragging>
 
-    <dxo-tree-list-paging [enabled]="true" [pageSize]="12"> </dxo-tree-list-paging>
+    <dxo-tree-list-paging
+      [enabled]="true"
+      [pageSize]="12"
+    ></dxo-tree-list-paging>
     <dxo-tree-list-scrolling mode="standard"></dxo-tree-list-scrolling>
   </dx-tree-list>
 
