@@ -60,7 +60,7 @@ function App(): JSX.Element {
   const onDragChange = useCallback((e: any) => {
     const visibleRows = e.component.getVisibleRows();
     const sourceNode = e.component.getNodeByKey(e.itemData.ID);
-    let targetNode: TreeListTypes.Node<any, any> | undefined = visibleRows[e.toIndex].node;
+    let targetNode: TreeListTypes.Node<Employee, number> | undefined = visibleRows[e.toIndex].node;
 
     while (targetNode?.data) {
       if (targetNode.data.ID === sourceNode.data.ID) {

@@ -46,11 +46,11 @@ const onDragChange = (e: any): void => {
       e.cancel = true;
       break;
     }
-    const parentNode = targetNode.parent;
-    if (!parentNode) {
+
+    if (!targetNode.parent) {
       break;
     }
-    targetNode = parentNode;
+    targetNode = targetNode.parent;
   }
 };
 
