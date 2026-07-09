@@ -198,6 +198,7 @@ const toggleExpansion = (): void => {
 #app-container {
   margin: 50px auto;
   padding: 20px;
+  position: relative;
 }
 
 #selected-employee {

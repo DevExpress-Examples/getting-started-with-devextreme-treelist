@@ -130,7 +130,7 @@ $(() => {
     },
     paging: {
       enabled: true,
-      pageSize: 10,
+      pageSize: 12,
     },
     height: 800,
     scrolling: {
