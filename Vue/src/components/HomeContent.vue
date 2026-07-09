@@ -17,6 +17,7 @@ import DxTreeList, {
   DxRowDragging,
   DxPaging,
   DxScrolling,
+  DxSorting,
   type DxTreeListTypes,
 } from 'devextreme-vue/tree-list';
 import DxButton from 'devextreme-vue/button';
@@ -128,7 +129,7 @@ const toggleExpansion = (): void => {
         <DxRequiredRule/>
       </DxColumn>
       <DxColumn data-field="City"/>
-      <DxColumn data-field="State">
+      <DxColumn data-field="State" sort-order="asc">
         <DxRequiredRule/>
       </DxColumn>
       <DxColumn
@@ -143,6 +144,7 @@ const toggleExpansion = (): void => {
       <DxFilterRow :visible="true"/>
       <DxSearchPanel :visible="true"/>
       <DxSelection mode="single"/>
+      <DxSorting mode="multiple"/>
       <DxEditing
         mode="popup"
         :allow-updating="true"

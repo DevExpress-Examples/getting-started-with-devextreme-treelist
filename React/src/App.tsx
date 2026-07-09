@@ -15,6 +15,7 @@ import TreeList, {
   RowDragging,
   Paging,
   Scrolling,
+  Sorting,
   type TreeListTypes,
 } from 'devextreme-react/tree-list';
 import Button from 'devextreme-react/button';
@@ -116,7 +117,7 @@ function App(): JSX.Element {
         onOptionChanged={onOptionChanged}
         height={800}
       >
-        <Column dataField="FullName">
+        <Column dataField="FullName" fixed={true}>
           <RequiredRule />
         </Column>
         <Column dataField="Position">
@@ -129,7 +130,7 @@ function App(): JSX.Element {
           <RequiredRule />
         </Column>
         <Column dataField="City" />
-        <Column dataField="State">
+        <Column dataField="State" sortOrder="asc">
           <RequiredRule />
         </Column>
         <Column dataField="Email" visible={false} />
@@ -139,6 +140,7 @@ function App(): JSX.Element {
         <ColumnFixing enabled={true} />
         <ColumnChooser enabled={true} />
         <FilterRow visible={true} />
+        <Sorting mode="multiple" />
         <SearchPanel visible={true} />
         <Editing
           mode="popup"

@@ -39,6 +39,7 @@ $(() => {
       }],
     }, 'City', {
       dataField: 'State',
+      sortOrder: 'asc',
       validationRules: [{
         type: 'required',
       }],
@@ -48,6 +49,7 @@ $(() => {
     }, 'MobilePhone', 'Skype'],
     filterRow: { visible: true },
     searchPanel: { visible: true },
+    sorting: { mode: 'multiple' },
     editing: {
       mode: 'popup',
       allowUpdating: true,

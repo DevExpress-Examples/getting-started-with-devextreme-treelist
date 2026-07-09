@@ -34,7 +34,7 @@
       ></dxi-tree-list-validation-rule>
     </dxi-tree-list-column>
     <dxi-tree-list-column dataField="City"></dxi-tree-list-column>
-    <dxi-tree-list-column dataField="State">
+    <dxi-tree-list-column dataField="State" sortOrder="asc">
       <dxi-tree-list-validation-rule
         type="required"
       ></dxi-tree-list-validation-rule>
@@ -53,6 +53,7 @@
     <dxo-tree-list-filter-row [visible]="true"></dxo-tree-list-filter-row>
     <dxo-tree-list-search-panel [visible]="true"></dxo-tree-list-search-panel>
     <dxo-tree-list-selection mode="single"></dxo-tree-list-selection>
+    <dxo-tree-list-sorting mode="multiple"></dxo-tree-list-sorting>
     <dxo-tree-list-editing
       mode="popup"
       [allowUpdating]="true"

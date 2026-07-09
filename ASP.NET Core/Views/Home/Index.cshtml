@@ -35,6 +35,7 @@
                 .ValidationRules(v => v.AddRequired());
             columns.AddFor(m => m.City);
             columns.AddFor(m => m.State)
+                .SortOrder(SortOrder.Asc)
                 .ValidationRules(v => v.AddRequired());
             columns.AddFor(m => m.Email)
                 .Visible(false);
@@ -44,6 +45,7 @@
         .FilterRow(f => f.Visible(true))
         .SearchPanel(s => s.Visible(true))
         .Selection(s => s.Mode(SelectionMode.Single))
+        .Sorting(s => s.Mode(GridSortingMode.Multiple))
         .Editing(e => e
             .Mode(GridEditMode.Popup)
             .AllowAdding(true)
