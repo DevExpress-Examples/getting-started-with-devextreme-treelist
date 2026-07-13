@@ -35,7 +35,7 @@ public class EmployeeDataController : Controller {
     [HttpPut]
     public IActionResult Update(int key, string values) {
         var employee = EmployeeData.Employees.FirstOrDefault(e => e.ID == key);
-        if (employee == null)
+        if(employee == null)
             return NotFound();
 
         var oldOrderIndex = employee.OrderIndex;
@@ -74,8 +74,6 @@ public class EmployeeDataController : Controller {
         EmployeeData.Employees.Remove(employee);
         return NoContent();
     }
-
-    
 
     private static void PopulateEmployee(Employee employee, string values) {
         using var document = JsonDocument.Parse(values);
