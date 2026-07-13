@@ -35,7 +35,6 @@
                 .ValidationRules(v => v.AddRequired());
             columns.AddFor(m => m.City);
             columns.AddFor(m => m.State)
-                .SortOrder(SortOrder.Asc)
                 .ValidationRules(v => v.AddRequired());
             columns.AddFor(m => m.Email)
                 .Visible(false);
@@ -118,9 +117,9 @@
     }
 
     function handleReorder(e) {
-        const dataGrid = e.component;
-        const store = dataGrid.getDataSource().store();
-        const visibleRows = dataGrid.getVisibleRows();
+        const treeList = e.component;
+        const store = treeList.getDataSource().store();
+        const visibleRows = treeList.getVisibleRows();
         const sourceData = e.itemData;
         const targetData = visibleRows[e.toIndex].data;
         const newOrderIndex = targetData.OrderIndex;
@@ -128,14 +127,14 @@
 
         if (e.dropInsideItem) {
             store.update(sourceData.ID, { HeadID: targetData.ID }).then(function() {
-                dataGrid.refresh().then(d.resolve, d.reject);
+                treeList.refresh().then(d.resolve, d.reject);
             }, d.reject);
         } else {
             store.update(sourceData.ID, {
                 OrderIndex: newOrderIndex,
                 HeadID: targetData.HeadID,
             }).then(function() {
-                dataGrid.refresh().then(d.resolve, d.reject);
+                treeList.refresh().then(d.resolve, d.reject);
             }, d.reject);
         }
 
