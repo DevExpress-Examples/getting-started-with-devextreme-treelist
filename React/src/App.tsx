@@ -130,7 +130,7 @@ function App(): JSX.Element {
           <RequiredRule />
         </Column>
         <Column dataField="City" />
-        <Column dataField="State" sortOrder="asc">
+        <Column dataField="State">
           <RequiredRule />
         </Column>
         <Column dataField="Email" visible={false} />

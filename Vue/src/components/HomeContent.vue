@@ -129,7 +129,7 @@ const toggleExpansion = (): void => {
         <DxRequiredRule/>
       </DxColumn>
       <DxColumn data-field="City"/>
-      <DxColumn data-field="State" sort-order="asc">
+      <DxColumn data-field="State">
         <DxRequiredRule/>
       </DxColumn>
       <DxColumn
