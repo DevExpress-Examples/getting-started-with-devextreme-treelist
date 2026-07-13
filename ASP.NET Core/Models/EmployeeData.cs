@@ -19,6 +19,7 @@ static class EmployeeData {
             MobilePhone = "(213) 555-9392",
             BirthDate = "1964-03-16",
             HireDate = "1995-01-15",
+            OrderIndex = 0,
         },
         new Employee {
             ID = 2,
@@ -32,6 +33,7 @@ static class EmployeeData {
             MobilePhone = "(213) 555-2858",
             BirthDate = "1966-05-02",
             HireDate = "2004-05-24",
+            OrderIndex = 1,
         },
         new Employee {
             ID = 3,
@@ -45,6 +47,7 @@ static class EmployeeData {
             MobilePhone = "(310) 555-8583",
             BirthDate = "1972-07-11",
             HireDate = "2007-12-18",
+            OrderIndex = 2,
         },
         new Employee {
             ID = 4,
@@ -58,6 +61,7 @@ static class EmployeeData {
             MobilePhone = "(818) 555-2387",
             BirthDate = "1974-09-07",
             HireDate = "2002-11-09",
+            OrderIndex = 3,
         },
         new Employee {
             ID = 5,
@@ -71,6 +75,7 @@ static class EmployeeData {
             MobilePhone = "(818) 555-6546",
             BirthDate = "1977-11-22",
             HireDate = "1998-04-23",
+            OrderIndex = 4,
         },
         new Employee {
             ID = 6,
@@ -84,6 +89,7 @@ static class EmployeeData {
             MobilePhone = "(626) 555-0358",
             BirthDate = "1968-12-01",
             HireDate = "2009-03-06",
+            OrderIndex = 5,
         },
         new Employee {
             ID = 7,
@@ -97,6 +103,7 @@ static class EmployeeData {
             MobilePhone = "(562) 555-2082",
             BirthDate = "1974-11-15",
             HireDate = "2005-05-11",
+            OrderIndex = 6,
         },
         new Employee {
             ID = 8,
@@ -110,6 +117,7 @@ static class EmployeeData {
             MobilePhone = "(310) 555-1288",
             BirthDate = "1973-07-14",
             HireDate = "2005-06-19",
+            OrderIndex = 7,
         },
         new Employee {
             ID = 9,
@@ -123,6 +131,7 @@ static class EmployeeData {
             MobilePhone = "(310) 555-3355",
             BirthDate = "1979-04-14",
             HireDate = "2002-08-07",
+            OrderIndex = 8,
         },
         new Employee {
             ID = 10,
@@ -136,6 +145,7 @@ static class EmployeeData {
             MobilePhone = "(213) 555-2840",
             BirthDate = "1978-01-09",
             HireDate = "2009-08-11",
+            OrderIndex = 9,
         },
         new Employee {
             ID = 11,
@@ -149,6 +159,7 @@ static class EmployeeData {
             MobilePhone = "(818) 555-6655",
             BirthDate = "1985-06-05",
             HireDate = "2008-03-24",
+            OrderIndex = 10,
         },
         new Employee {
             ID = 12,
@@ -162,6 +173,7 @@ static class EmployeeData {
             MobilePhone = "(626) 555-7292",
             BirthDate = "1984-02-17",
             HireDate = "2012-02-01",
+            OrderIndex = 11,
         },
         new Employee {
             ID = 13,
@@ -175,6 +187,7 @@ static class EmployeeData {
             MobilePhone = "(626) 555-0281",
             BirthDate = "1983-03-06",
             HireDate = "2011-04-24",
+            OrderIndex = 12,
         },
         new Employee {
             ID = 14,
@@ -188,6 +201,7 @@ static class EmployeeData {
             MobilePhone = "(213) 555-9278",
             BirthDate = "1986-07-23",
             HireDate = "2012-07-23",
+            OrderIndex = 13,
         },
         new Employee {
             ID = 15,
@@ -201,6 +215,7 @@ static class EmployeeData {
             MobilePhone = "(818) 555-7857",
             BirthDate = "1982-04-08",
             HireDate = "2012-08-12",
+            OrderIndex = 14,
         },
         new Employee {
             ID = 16,
@@ -214,6 +229,7 @@ static class EmployeeData {
             MobilePhone = "(818) 555-0942",
             BirthDate = "1981-06-12",
             HireDate = "2012-09-01",
+            OrderIndex = 15,
         },
         new Employee {
             ID = 17,
@@ -227,6 +243,7 @@ static class EmployeeData {
             MobilePhone = "(818) 555-9248",
             BirthDate = "1988-05-11",
             HireDate = "2012-10-13",
+            OrderIndex = 16,
         },
         new Employee {
             ID = 18,
@@ -240,6 +257,7 @@ static class EmployeeData {
             MobilePhone = "(323) 555-4702",
             BirthDate = "1987-01-29",
             HireDate = "2012-10-18",
+            OrderIndex = 17,
         },
         new Employee {
             ID = 19,
@@ -253,6 +271,7 @@ static class EmployeeData {
             MobilePhone = "(310) 555-6625",
             BirthDate = "1986-02-19",
             HireDate = "2013-01-19",
+            OrderIndex = 18,
         },
         new Employee {
             ID = 20,
@@ -266,6 +285,7 @@ static class EmployeeData {
             MobilePhone = "(310) 555-2728",
             BirthDate = "1981-06-03",
             HireDate = "2012-05-14",
+            OrderIndex = 19,
         },
         new Employee {
             ID = 21,
@@ -279,6 +299,7 @@ static class EmployeeData {
             MobilePhone = "(310) 555-7276",
             BirthDate = "1982-08-14",
             HireDate = "2012-04-14",
+            OrderIndex = 20,
         },
         new Employee {
             ID = 22,
@@ -292,6 +313,7 @@ static class EmployeeData {
             MobilePhone = "(213) 555-4276",
             BirthDate = "1983-11-19",
             HireDate = "2011-02-10",
+            OrderIndex = 21,
         },
         new Employee {
             ID = 23,
@@ -305,6 +327,7 @@ static class EmployeeData {
             MobilePhone = "(818) 555-8872",
             BirthDate = "1984-12-24",
             HireDate = "2011-02-17",
+            OrderIndex = 22,
         },
         new Employee {
             ID = 24,
@@ -318,6 +341,7 @@ static class EmployeeData {
             MobilePhone = "(818) 555-4646",
             BirthDate = "1988-10-12",
             HireDate = "2011-03-02",
+            OrderIndex = 23,
         },
         new Employee {
             ID = 25,
@@ -331,6 +355,7 @@ static class EmployeeData {
             MobilePhone = "(626) 555-0908",
             BirthDate = "1987-04-26",
             HireDate = "2011-03-14",
+            OrderIndex = 24,
         },
         new Employee {
             ID = 26,
@@ -344,6 +369,7 @@ static class EmployeeData {
             MobilePhone = "(213) 555-7098",
             BirthDate = "1982-03-02",
             HireDate = "2005-05-19",
+            OrderIndex = 25,
         },
         new Employee {
             ID = 27,
@@ -357,6 +383,7 @@ static class EmployeeData {
             MobilePhone = "(818) 555-0524",
             BirthDate = "1983-09-11",
             HireDate = "2005-06-04",
+            OrderIndex = 26,
         },
         new Employee {
             ID = 28,
@@ -370,6 +397,7 @@ static class EmployeeData {
             MobilePhone = "(818) 555-8238",
             BirthDate = "1984-07-17",
             HireDate = "2012-01-11",
+            OrderIndex = 27,
         },
         new Employee {
             ID = 29,
@@ -383,6 +411,7 @@ static class EmployeeData {
             MobilePhone = "(818) 555-2478",
             BirthDate = "1985-06-10",
             HireDate = "2012-01-19",
+            OrderIndex = 28,
         },
         new Employee {
             ID = 30,
@@ -396,6 +425,7 @@ static class EmployeeData {
             MobilePhone = "(562) 555-9282",
             BirthDate = "1972-09-11",
             HireDate = "2009-04-22",
+            OrderIndex = 29,
         },
     ];
 }
