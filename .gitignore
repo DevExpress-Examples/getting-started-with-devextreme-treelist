@@ -304,12 +304,7 @@ TesterMetadata.xml
 # Backup files
 *.bak
 
-*/wwwroot/js/vendor.js
-!*/wwwroot/js
-!*/wwwroot/js/helpers
-!*/wwwroot/js/helpers/**
+*/wwwroot/*
 
-*/wwwroot/css/*
 !*/wwwroot/css/Site.css
-
 *.DS_Store
