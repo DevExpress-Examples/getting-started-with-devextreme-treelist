@@ -11,7 +11,7 @@ public class EmployeeDataController : Controller {
 
     [HttpGet]
     public object Get(DataSourceLoadOptions loadOptions) {
-        return DataSourceLoader.Load(EmployeeData.Employees, loadOptions);
+        return DataSourceLoader.Load(EmployeeData.Employees.OrderBy(e => e.OrderIndex), loadOptions);
     }
 
     [HttpPost]
@@ -22,6 +22,11 @@ public class EmployeeDataController : Controller {
         employee.ID = EmployeeData.Employees.Count > 0
             ? EmployeeData.Employees.Max(e => e.ID) + 1
             : 1;
+
+        employee.OrderIndex = EmployeeData.Employees.Count > 0
+            ? EmployeeData.Employees.Max(e => e.OrderIndex) + 1
+            : 0;
+
         EmployeeData.Employees.Add(employee);
 
         return Ok(employee);
@@ -33,7 +38,29 @@ public class EmployeeDataController : Controller {
         if (employee == null)
             return NotFound();
 
+        var oldOrderIndex = employee.OrderIndex;
+
         PopulateEmployee(employee, values);
+
+        var newOrderIndex = employee.OrderIndex;
+
+        if (oldOrderIndex != newOrderIndex) {
+            employee.OrderIndex = oldOrderIndex;
+            var sortedEmployees = EmployeeData.Employees
+                .OrderBy(e => e.OrderIndex)
+                .ToList();
+
+            if (oldOrderIndex < newOrderIndex) {
+                for(var i = oldOrderIndex + 1; i <= newOrderIndex; i++) {
+                    sortedEmployees[i].OrderIndex--;
+                }
+            } else {
+                for(var i = newOrderIndex; i < oldOrderIndex; i++) {
+                    sortedEmployees[i].OrderIndex++;
+                }
+            }
+            employee.OrderIndex = newOrderIndex;
+        }
 
         return Ok(employee);
     }
@@ -48,27 +75,7 @@ public class EmployeeDataController : Controller {
         return NoContent();
     }
 
-    [HttpPut]
-    public IActionResult Reorder(int sourceId, int targetId, bool dropInside) {
-        var employees = EmployeeData.Employees;
-        var source = employees.FirstOrDefault(e => e.ID == sourceId);
-        var target = employees.FirstOrDefault(e => e.ID == targetId);
-        if (source == null || target == null)
-            return NotFound();
-
-        if (dropInside) {
-            employees.Remove(source);
-            source.HeadID = target.ID;
-            employees.Insert(employees.IndexOf(target) + 1, source);
-        } else {
-            var targetIndex = employees.IndexOf(target);
-            employees.Remove(source);
-            source.HeadID = target.HeadID;
-            employees.Insert(targetIndex, source);
-        }
-
-        return Ok();
-    }
+    
 
     private static void PopulateEmployee(Employee employee, string values) {
         using var document = JsonDocument.Parse(values);
@@ -103,6 +110,9 @@ public class EmployeeDataController : Controller {
                     break;
                 case nameof(Employee.HireDate):
                     employee.HireDate = property.Value.GetString();
+                    break;
+                case nameof(Employee.OrderIndex):
+                    employee.OrderIndex = property.Value.GetInt32();
                     break;
             }
         }

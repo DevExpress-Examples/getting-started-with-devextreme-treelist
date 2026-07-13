@@ -118,19 +118,27 @@
     }
 
     function handleReorder(e) {
-        const targetRow = e.component.getVisibleRows()[e.toIndex];
-        if (!targetRow) {
-            return;
+        const dataGrid = e.component;
+        const store = dataGrid.getDataSource().store();
+        const visibleRows = dataGrid.getVisibleRows();
+        const sourceData = e.itemData;
+        const targetData = visibleRows[e.toIndex].data;
+        const newOrderIndex = targetData.OrderIndex;
+        const d = $.Deferred();
+
+        if (e.dropInsideItem) {
+            store.update(sourceData.ID, { HeadID: targetData.ID }).then(function() {
+                dataGrid.refresh().then(d.resolve, d.reject);
+            }, d.reject);
+        } else {
+            store.update(sourceData.ID, {
+                OrderIndex: newOrderIndex,
+                HeadID: targetData.HeadID,
+            }).then(function() {
+                dataGrid.refresh().then(d.resolve, d.reject);
+            }, d.reject);
         }
 
-        e.promise = $.ajax({
-            url: '@Url.Action("Reorder", "EmployeeData")',
-            method: 'PUT',
-            data: {
-                sourceId: e.itemData.ID,
-                targetId: targetRow.data.ID,
-                dropInside: !!e.dropInsideItem,
-            },
-        }).then(() => e.component.refresh());
+        e.promise = d.promise();
     }
 </script>
