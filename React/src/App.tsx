@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import './App.css';
-import 'devextreme/dist/css/dx.material.blue.light.compact.css';
+import 'devextreme/dist/css/dx.fluent.blue.light.css';
 import TreeList, {
   ColumnChooser,
   ColumnFixing,
@@ -14,6 +14,8 @@ import TreeList, {
   Item,
   RowDragging,
   Paging,
+  Scrolling,
+  Sorting,
   type TreeListTypes,
 } from 'devextreme-react/tree-list';
 import Button from 'devextreme-react/button';
@@ -59,7 +61,7 @@ function App(): JSX.Element {
   const onDragChange = useCallback((e: any) => {
     const visibleRows = e.component.getVisibleRows();
     const sourceNode = e.component.getNodeByKey(e.itemData.ID);
-    let targetNode = visibleRows[e.toIndex].node;
+    let targetNode: TreeListTypes.Node<Employee, number> | undefined = visibleRows[e.toIndex].node;
 
     while (targetNode?.data) {
       if (targetNode.data.ID === sourceNode.data.ID) {
@@ -90,6 +92,7 @@ function App(): JSX.Element {
     }
 
     setCurrentEmployees(employeesService.getEmployees());
+    e.component.refresh();
   }, [currentEmployees]);
 
   const toggleExpansion = useCallback(() => {
@@ -111,8 +114,10 @@ function App(): JSX.Element {
         allowColumnResizing={true}
         columnAutoWidth={true}
         onSelectionChanged={selectEmployee}
-        onOptionChanged={onOptionChanged}>
-        <Column dataField="FullName">
+        onOptionChanged={onOptionChanged}
+        height={800}
+      >
+        <Column dataField="FullName" fixed={true}>
           <RequiredRule />
         </Column>
         <Column dataField="Position">
@@ -135,6 +140,7 @@ function App(): JSX.Element {
         <ColumnFixing enabled={true} />
         <ColumnChooser enabled={true} />
         <FilterRow visible={true} />
+        <Sorting mode="multiple" />
         <SearchPanel visible={true} />
         <Editing
           mode="popup"
@@ -166,7 +172,8 @@ function App(): JSX.Element {
           showDragIcons={true}
         />
 
-        <Paging enabled={true} defaultPageSize={10} />
+        <Paging enabled={true} defaultPageSize={12} />
+        <Scrolling mode="standard" />
       </TreeList>
       <SelectedEmployee employee={selectedEmployee} />
     </div>

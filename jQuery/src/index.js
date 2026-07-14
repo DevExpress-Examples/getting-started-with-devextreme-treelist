@@ -48,6 +48,7 @@ $(() => {
     }, 'MobilePhone', 'Skype'],
     filterRow: { visible: true },
     searchPanel: { visible: true },
+    sorting: { mode: 'multiple' },
     editing: {
       mode: 'popup',
       allowUpdating: true,
@@ -130,7 +131,11 @@ $(() => {
     },
     paging: {
       enabled: true,
-      pageSize: 10,
+      pageSize: 12,
     },
+    height: 800,
+    scrolling: {
+      mode: 'standard'
+    }
   }).dxTreeList('instance');
 });
